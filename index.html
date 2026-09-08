@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Skiat Skut — Different Stories, One Journey</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <!-- =========================================================
+       PROGRESS BAR
+       ========================================================= -->
+  <div class="progress" id="prog"></div>
+  
+  <!-- =========================================================
+       ORGANIC BLOBS
+       ========================================================= -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+    <div class="blob b5"></div>
+    <div class="blob b6"></div>
+  </div>
+  
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#home" class="nav-brand">
+      <img
+        class="nav-logo"
+        src="Picture/logo.png"
+        alt="Logo"
+        width="32"
+        height="32"
+      />
+      <span class="nav-name">
+        Skiat Skut
+      </span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a
+        href="#home"
+        class="nav-link active"
+        data-s="home"
+      >
+        Home
+      </a>
+
+      <a
+        href="#profile"
+        class="nav-link"
+        data-s="profile"
+      >
+        Profile
+      </a>
+      <!-- KARYA TETAP -->
+      <a
+        href="#works"
+        class="nav-link"
+        data-s="works"
+      >
+        Karya
+      </a>
+      <a
+        href="#pictures"
+        class="nav-link"
+        data-s="pictures"
+      >
+        Pictures
+      </a>
+      <a
+        href="#timeline"
+        class="nav-link"
+        data-s="timeline"
+      >
+        Timeline
+      </a>
+      <a
+        href="#contact"
+        class="nav-link"
+        data-s="contact"
+      >
+        Contact
+      </a>
+      <!-- MENU HALAMAN -->
+      <a
+        href="posts.html"
+        class="nav-link"
+      >
+        Postingan
+      </a>
+      <a
+        href="admin.html"
+        class="nav-link"
+      >
+        Login Admin
+      </a>
+    </div>
+    <a
+      href="#contact"
+      class="btn btn-fill nav-cta"
+    >
+      Get in Touch
+    </a>
+    <button
+      class="ham"
+      id="ham"
+      aria-label="Menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- =========================================================
+     MOBILE NAVIGATION
+     ========================================================= -->
+<div class="mob" id="mob">
+  <div
+    class="mob-bg"
+    id="mobBg"
+  ></div>
+
+  <div class="mob-panel">
+    <a
+      href="#home"
+      class="mob-link"
+      data-s="home"
+    >
+      Home
+    </a>
+    <a
+      href="#profile"
+      class="mob-link"
+      data-s="profile"
+    >
+      Profile
+    </a>
+    <!-- KARYA TETAP -->
+    <a
+      href="#works"
+      class="mob-link"
+      data-s="works"
+    >
+      Karya
+    </a>
+    <a
+      href="#pictures"
+      class="mob-link"
+      data-s="pictures"
+    >
+      Pictures
+    </a>
+    <a
+      href="#timeline"
+      class="mob-link"
+      data-s="timeline"
+    >
+      Timeline
+    </a>
+    <a
+      href="#contact"
+      class="mob-link"
+      data-s="contact"
+    >
+      Contact
+    </a>
+    <!-- MENU HALAMAN -->
+    <a
+      href="posts.html"
+      class="mob-link"
+    >
+      Postingan
+    </a>
+    <a
+      href="admin.html"
+      class="mob-link"
+    >
+      Login Admin
+    </a>
+  </div>
+</div>
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <span
+          class="pill anim"
+          data-a="fade"
+          data-d="0"
+        >
+          ✦ Koding & AI Group
+        </span>
+        <h1 class="hero-h1">
+          <span
+            class="anim"
+            data-a="up"
+            data-d="1"
+          >
+            Kami adalah
+          </span>
+          <span
+            class="hero-accent anim"
+            data-a="up"
+            data-d="2"
+          >
+            Skiat Skut
+          </span>
+        </h1>
+        <p
+          class="hero-sub anim"
+          data-a="up"
+          data-d="3"
+          id="heroDesc"
+        ></p>
+        <div
+          class="hero-btns anim"
+          data-a="up"
+          data-d="4"
+        >
+          <a
+            href="#profile"
+            class="btn btn-fill"
+          >
+            Meet the Team
+            <span class="btn-arrow">→</span>
+          </a>
+          <a
+            href="#timeline"
+            class="btn btn-outline"
+          >
+            Our Story
+          </a>
+        </div>
+      </div>
+      <div
+        class="hero-right anim"
+        data-a="fade"
+        data-d="3"
+      >
+        <div class="hero-card">
+          <div class="hero-stat">
+            <span
+              class="hero-stat-n"
+              data-count="6"
+            >
+              0
+            </span>
+            <span class="hero-stat-l">
+              Anggota
+            </span>            
+          </div>
+          <div class="hero-stat">
+            <span
+              class="hero-stat-n"
+              data-count="20"
+              data-suf="+"
+            >
+              0
+            </span>
+            <span class="hero-stat-l">
+              Skills
+            </span>
+          </div>
+          <div class="hero-stat">
+            <span
+              class="hero-stat-n"
+              data-count="1"
+            >
+              0
+            </span>
+            <span class="hero-stat-l">
+              Visi
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="scroll-hint anim"
+      data-a="fade"
+      data-d="6"
+    >
+      <span>
+        Scroll down
+      </span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       HOW WE WORK
+       ========================================================= -->
+  <section
+    class="section"
+    id="howWeWork"
+  >
+    <div class="container">
+      <div
+        class="sec-hdr anim"
+        data-a="up"
+      >
+        <span class="sec-label">
+          / Cara Kerja /
+        </span>
+        <h2 class="sec-title">
+          Here's How We Work
+        </h2>
+      </div>
+      <div class="steps-grid">
+        <div
+          class="step-card glass anim"
+          data-a="up"
+          data-d="0"
+        >
+          <span class="step-num">
+            01
+          </span>
+          <h3>
+            Explore
+          </h3>
+          <p>
+            Mengeksplorasi ide, teknologi, dan kemungkinan baru
+            bersama sebagai tim.
+          </p>
+        </div>
+        <div
+          class="step-card glass anim"
+          data-a="up"
+          data-d="1"
+        >
+          <span class="step-num">
+            02
+          </span>
+          <h3>
+            Build
+          </h3>
+          <p>
+            Membangun solusi nyata melalui kode, desain,
+            dan kolaborasi.
+          </p>
+        </div>
+        <div
+          class="step-card glass anim"
+          data-a="up"
+          data-d="2"
+        >
+          <span class="step-num">
+            03
+          </span>
+          <h3>
+            Deliver
+          </h3>
+          <p>
+            Menghasilkan karya yang berdampak dan siap
+            dipresentasikan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       PROFILE
+       ========================================================= -->
+  <section
+    id="profile"
+    class="section"
+  >
+    <div class="container">
+      <div
+        class="sec-hdr anim"
+        data-a="up"
+      >
+        <span class="sec-label">
+          / Our Team /
+        </span>
+        <h2 class="sec-title">
+          Meet the Team
+        </h2>
+        <p class="sec-sub">
+          Setiap anggota membawa keunikan dan perspektif
+          yang berbeda.
+        </p>
+      </div>
+      <!-- Filter Profile -->
+      <div
+        class="pf-filters anim"
+        data-a="up"
+        data-d="1"
+        id="pfFilt"
+      ></div>
+      <!-- Profile Cards -->
+      <div
+        class="pf-grid"
+        id="pfGrid"
+      ></div>
+    </div>
+  </section>
+  <!-- =========================================================
+       PROFILE CV MODAL
+       ========================================================= -->
+  <div
+    class="modal"
+    id="modal"
+  >
+    <div class="modal-bg"></div>
+    <div class="modal-box">
+      <!-- CLOSE -->
+      <button
+        class="modal-x"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+      <!-- PROFILE HEADER -->
+      <div class="modal-hero">
+        <img
+          id="mImg"
+          src=""
+          alt=""
+          decoding="async"
+        />
+        <div class="modal-grad"></div>
+      </div>
+      <!-- PROFILE CONTENT -->
+      <div class="modal-body">
+        <!-- NAME + ROLE -->
+        <div class="cv-head">
+          <h3 id="mName"></h3>
+          <span
+            class="modal-badge"
+            id="mRole"
+          ></span>
+        </div> 
+        <!-- PROFILE -->
+        <div class="mf">
+          <h4>
+            Profile
+          </h4>
+          <p id="mBio"></p>
+        </div>
+        <!-- EDUCATION TIMELINE -->
+        <div class="mf">
+          <h4>
+            Education
+          </h4>
+          <div
+            class="cv-timeline"
+            id="mEducation"
+          ></div>
+        </div>
+        <!-- SKILLS -->
+        <div class="mf">
+          <h4>
+            Skills
+          </h4>
+          <div
+            class="mtags"
+            id="mSkills"
+          ></div>
+        </div>
+        <!-- INTERESTS & HOBBIES -->
+        <div class="mf">
+          <h4>
+            Interests & Hobbies
+          </h4>
+          <div
+            class="mtags mtags-g"
+            id="mHobbies"
+          ></div>
+        </div>
+        <!-- SOCIAL MEDIA -->
+        <div class="mf">        
+          <h4>
+            Social Media
+          </h4>
+          <div
+            class="cv-socials"
+            id="mSocials"
+          ></div>
+        </div>
+        <!-- EMAIL -->
+        <div class="mf">
+          <h4>
+            Contact
+          </h4>
+          <a
+            class="btn btn-fill btn-sm"
+            id="mEmail"
+            href=""
+          >
+            ✉ Email Me
+          </a>
+          <span
+            class="modal-esub"
+            id="mEmailT"
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ===== KARYA ===== -->
+<section id="works" class="section">
+  <div class="container">
+    <div class="sec-hdr anim" data-a="up">
+      <span class="sec-label">/ Our Works /</span>
+      <h2 class="sec-title">
+        Karya
+      </h2>
+      <p class="sec-sub">
+        Kumpulan project dan karya yang dibuat oleh Skiat Skut.
+      </p>
+    </div>
+    <div
+      class="works-grid"
+      id="worksGrid"
+    ></div>
+  </div>
+</section>
+
+  <!-- =========================================================
+       PICTURES / GALLERY
+       ========================================================= -->
+  <section
+    id="pictures"
+    class="section"
+  >
+    <div class="container">
+      <div
+        class="sec-hdr anim"
+        data-a="up"
+      >
+        <span class="sec-label">
+          / Gallery /
+        </span>
+        <h2 class="sec-title">
+          Our Moments
+        </h2>
+        <p class="sec-sub">
+          Dokumentasi momen berharga dalam perjalanan
+          Skiat Skut.
+        </p>
+      </div>
+      <!-- Gallery Filters -->
+      <div
+        class="gal-filters anim"
+        data-a="up"
+        data-d="1"
+        id="galFilt"
+      ></div>
+      <!-- Gallery Grid -->
+      <div
+        class="gal-grid"
+        id="galGrid"
+      ></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MEDIA LIGHTBOX
+       ========================================================= -->
+  <div
+    class="lb"
+    id="lb"
+  >
+    <div class="lb-bg"></div>
+    <!-- CLOSE -->
+    <button
+      class="lb-btn lb-close"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+    <!-- PREVIOUS -->
+    <button
+      class="lb-btn lb-prev"
+      aria-label="Previous"
+    >
+      &#8249;
+    </button>
+    <!-- NEXT -->
+    <button
+      class="lb-btn lb-next"
+      aria-label="Next"
+    >
+      &#8250;
+    </button>
+    <!-- IMAGE -->
+    <img
+      class="lb-img"
+      id="lbImg"
+      src=""
+      alt=""
+    />
+    <!-- VIDEO -->
+    <video
+      class="lb-video"
+      id="lbVideo"
+      controls
+      playsinline
+      preload="metadata"
+    ></video>
+    <!-- LIGHTBOX META -->
+    <div class="lb-meta">
+      <p id="lbCap"></p>
+      <p id="lbCnt"></p>
+    </div>
+  </div>
+   <!-- WORK FILTERS -->
+      <div
+        class="works-filters anim"
+        data-a="up"
+        data-d="1"
+        id="worksFilt"
+      ></div>
+      <!-- WORKS GRID -->
+      <div
+        class="works-grid"
+        id="worksGrid"
+      ></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TIMELINE KELOMPOK
+       ========================================================= -->
+  <section
+    id="timeline"
+    class="section"
+  >
+    <div class="container">
+      <div
+        class="sec-hdr anim"
+        data-a="up"
+      >
+        <span class="sec-label">
+          / Our Journey /
+        </span>
+        <h2 class="sec-title">
+          Timeline
+        </h2>
+      </div>
+      <!-- Timeline dari index.json -->
+      <div
+        class="tl"
+        id="tlWrap"
+      ></div>
+    </div>   
+  </section>
+  
+  <!-- =========================================================
+       CONTACT
+       ========================================================= -->
+  <section
+    id="contact"
+    class="section"
+  >
+    <div class="container">
+      <div
+        class="sec-hdr anim"
+        data-a="up"
+      >
+        <span class="sec-label">
+          / Reach Out /
+        </span>
+        <h2 class="sec-title">
+          Get In Touch
+        </h2>
+        <p class="sec-sub">
+          Hubungi kami untuk kolaborasi atau sekedar menyapa.
+        </p>
+      </div>
+      <div class="ct-grid">
+        <!-- CONTACT FORM -->
+        <div
+          class="ct-form-w anim"
+          data-a="up"
+          data-d="0"
+        >
+          <form
+            class="ct-form glass"
+            id="ctForm"
+          >
+            <div class="fld">
+
+              <label for="cN">
+                Name
+              </label>
+              <input
+                id="cN"
+                type="text"
+                placeholder="Nama kamu"
+                required
+              />
+            </div>
+            <div class="fld">
+              <label for="cE">
+                Email
+              </label>
+              <input
+                id="cE"
+                type="email"
+                placeholder="email@example.com"
+                required
+              />
+            </div>
+            <div class="fld">
+              <label for="cM">
+                Message
+              </label>
+              <textarea
+                id="cM"
+                rows="5"
+                placeholder="Tulis pesan/saran/kritik/ pernyataan Anda kepada Kami..."
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-fill btn-full"
+            >
+              Send Message
+            </button>
+          </form>
+          <!-- SUCCESS MESSAGE -->
+          <div
+            class="ct-ok glass"
+            id="ctOk"
+            hidden
+          >
+            <div class="ct-ok-ic">
+              ✓
+            </div>
+            <h3>
+              Pesan Terkirim!
+            </h3>
+            <p>
+              Pesan kamu sudah dikirim ke server kami.
+            </p>
+          </div>
+        </div>
+        <!-- CONTACT INFO -->
+        <div
+          class="ct-info anim"
+          data-a="up"
+          data-d="1"
+        >
+          <div class="glass ct-card">
+            <h3>
+              Kontak Kelompok
+            </h3>
+            <div id="ctGrp"></div>
+          </div>
+          <div class="glass ct-card">
+            <h3>
+              Hubungi Anggota
+            </h3>
+            <div id="ctMem"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================================
+       CTA
+       ========================================================= -->
+  <section class="cta-sec">
+    <div
+      class="cta-wave"
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,30 1440,60 L1440,120 L0,120Z"
+          fill="#2a3a22"
+        />
+      </svg>
+    </div>
+    <div class="cta-body">
+      <div class="container">
+        <div
+          class="cta-inner anim"
+          data-a="up"
+        >
+          <h2>
+            Let's Make It<br/>
+            Happen
+          </h2>
+          <p>
+            Selalu terbuka untuk kolaborasi dan koneksi baru.
+          </p>
+          <a
+            href="#contact"
+            class="btn btn-light"
+          >
+            Get in Touch
+            <span class="btn-arrow">
+              →
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="ft-grid">
+        <!-- BRAND -->
+        <div class="ft-brand">
+          <div class="ft-logo">
+            <img
+              class="nav-logo"
+              src="Picture/logo.png"
+              alt="Logo"
+              width="32"
+              height="32"
+            />
+            <span>
+              Skiat Skut
+            </span>
+          </div>
+          <p>
+            Different Stories, One Journey.
+          </p>
+        </div>
+        <!-- MENU -->
+        <div class="ft-col">
+          <h4>
+            Menu
+          </h4>
+          <a href="#home">
+            Home
+          </a>
+          <a href="#profile">
+            Profile
+          </a>
+          <a href="#pictures">
+            Pictures
+          </a>
+          <a href="#works">
+            Karya
+          </a>
+          <a href="#timeline">
+            Timeline
+          </a>
+          <a href="#contact">
+            Contact
+          </a>
+        </div>
+        <!-- TEAM -->
+        <div
+          class="ft-col"
+          id="ftTeam"
+        >
+          <h4>
+            Tim
+          </h4>
+        </div>
+        <!-- CONNECT -->
+        <div
+          class="ft-col"
+          id="ftCon"
+        >
+          <h4>
+            Connect
+          </h4>
+        </div>
+      </div>
+      <div class="ft-bot">
+        <p>
+          &copy; 2026 Skiat Skut — Koding & AI Group
+        </p>
+        <p>
+          Different Stories, One Journey.
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- =========================================================
+       BACK TO TOP
+       ========================================================= -->
+  <button
+    class="btt"
+    id="btt"
+    aria-label="Top"
+  >
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+    >
+      <path
+        d="M9 14V4M5 8l4-4 4 4"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+  
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Login Admin — Skiat Skut</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root{
+      --g4:#6b8c5a;
+      --g5:#4a6b3a;
+      --g6:#2a3a22;
+      --cream:#f0eed8;
+      --cream2:#e8e5d0;
+      --text:#1c2418;
+      --text2:#3a4a30;
+      --text3:#5a6a50;
+      --text4:#8a9a7e;
+      --glass:rgba(255,255,255,.22);
+      --glass-border:rgba(255,255,255,.25);
+      --fd:'Playfair Display',Georgia,serif;
+      --fb:'DM Sans',system-ui,sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:var(--fb);
+      background:
+        linear-gradient(165deg,#d6e2c4 0%,#c0d4a2 20%,#a8c488 45%,#90b470 70%,#7da45c 100%);
+      background-attachment:fixed;
+      min-height:100vh;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    button,input,textarea{font:inherit}
+
+    .bg{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    .blob{
+      position:absolute;
+      background:var(--g4);
+      border-radius:40% 60% 55% 45% / 55% 40% 60% 45%;
+      opacity:.28;
+      will-change:transform;
+      animation:blobFloat 24s ease-in-out infinite alternate;
+    }
+
+    .b1{width:380px;height:380px;top:-120px;right:-100px}
+    .b2{width:280px;height:280px;top:260px;left:-130px;animation-delay:-5s}
+    .b3{width:330px;height:330px;bottom:100px;right:-120px;animation-delay:-10s}
+    .b4{width:220px;height:220px;bottom:-80px;left:-80px;animation-delay:-15s}
+
+    @keyframes blobFloat{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      50%{transform:translate3d(10px,-8px,0) scale(1.02)}
+      100%{transform:translate3d(-8px,8px,0) scale(.99)}
+    }
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      min-height:74px;
+      padding:.75rem 1.5rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      background:rgba(214,226,196,.78);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.25);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      flex-shrink:0;
+    }
+
+    .brand img{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      object-fit:cover;
+      background:white;
+    }
+
+    .brand-name{
+      font-family:var(--fd);
+      font-size:1.35rem;
+      font-weight:700;
+      color:var(--g6);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:.25rem;
+    }
+
+    .nav-link{
+      padding:.55rem .7rem;
+      border-radius:999px;
+      color:var(--text2);
+      font-size:.75rem;
+      font-weight:600;
+      transition:background .2s,color .2s,transform .2s;
+      white-space:nowrap;
+    }
+
+    .nav-link:hover{
+      background:rgba(255,255,255,.3);
+      color:var(--g6);
+      transform:translateY(-1px);
+    }
+
+    .nav-link.active{
+      background:var(--g6);
+      color:var(--cream);
+    }
+
+    .nav-admin{
+      background:var(--g6);
+      color:var(--cream);
+      padding:.6rem .9rem;
+    }
+
+    .nav-admin:hover{
+      background:var(--g5);
+      color:var(--cream);
+    }
+
+    .menu-btn{
+      display:none;
+      width:42px;
+      height:42px;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.35);
+      color:var(--g6);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .menu-icon{
+      width:20px;
+      height:14px;
+      position:relative;
+      display:block;
+    }
+
+    .menu-icon span,
+    .menu-icon::before,
+    .menu-icon::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:20px;
+      height:2px;
+      border-radius:2px;
+      background:currentColor;
+      transition:transform .2s,opacity .2s,top .2s;
+    }
+
+    .menu-icon::before{top:0}
+    .menu-icon span{top:6px}
+    .menu-icon::after{top:12px}
+
+    .menu-btn.open .menu-icon::before{
+      top:6px;
+      transform:rotate(45deg);
+    }
+
+    .menu-btn.open .menu-icon span{
+      opacity:0;
+    }
+
+    .menu-btn.open .menu-icon::after{
+      top:6px;
+      transform:rotate(-45deg);
+    }
+
+    .login-wrap{
+      min-height:calc(100vh - 74px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:3rem 1.25rem;
+    }
+
+    .login-card{
+      width:100%;
+      max-width:470px;
+      padding:2.75rem 2.25rem;
+      border-radius:1.5rem;
+      background:var(--glass);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid var(--glass-border);
+      box-shadow:0 20px 70px rgba(42,58,34,.10);
+      text-align:center;
+    }
+
+    .login-card .logo{
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      object-fit:cover;
+      background:#fff;
+      margin:0 auto 1.25rem;
+      box-shadow:0 8px 25px rgba(42,58,34,.08);
+    }
+
+    .login-label{
+      display:block;
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      color:var(--g5);
+      margin-bottom:.5rem;
+    }
+
+    .login-card h1{
+      font-family:var(--fd);
+      font-size:2.3rem;
+      font-weight:700;
+      color:var(--text);
+      margin-bottom:.4rem;
+    }
+
+    .login-card .subtitle{
+      font-size:.9rem;
+      line-height:1.6;
+      color:var(--text3);
+      margin-bottom:2rem;
+    }
+
+    .fld{
+      margin-bottom:1.15rem;
+      text-align:left;
+    }
+
+    .fld label{
+      display:block;
+      font-size:.75rem;
+      font-weight:700;
+      color:var(--text);
+      margin-bottom:.45rem;
+    }
+
+    .fld input,
+    .post-form input,
+    .post-form textarea{
+      width:100%;
+      padding:.85rem 1rem;
+      font-family:var(--fb);
+      font-size:.9rem;
+      color:var(--text);
+      background:rgba(255,255,255,.34);
+      border:1.5px solid rgba(255,255,255,.32);
+      border-radius:.75rem;
+      outline:none;
+      transition:border-color .2s,background .2s,box-shadow .2s;
+    }
+
+    .fld input:focus,
+    .post-form input:focus,
+    .post-form textarea:focus{
+      border-color:var(--g4);
+      background:rgba(255,255,255,.5);
+      box-shadow:0 0 0 3px rgba(107,140,90,.1);
+    }
+
+    .btn{
+      border:0;
+      cursor:pointer;
+      border-radius:999px;
+      font-family:var(--fb);
+      font-weight:700;
+      transition:background .2s,transform .2s,box-shadow .2s;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+    .btn:disabled{opacity:.65;cursor:not-allowed;transform:none}
+
+    .btn-login{
+      width:100%;
+      padding:.9rem;
+      background:var(--g6);
+      color:var(--cream);
+      font-size:.9rem;
+      box-shadow:0 8px 25px rgba(42,58,34,.12);
+    }
+
+    .btn-login:hover{background:var(--g5)}
+
+    .login-err{
+      display:none;
+      margin-top:1rem;
+      padding:.75rem 1rem;
+      border-radius:.7rem;
+      background:rgba(180,50,50,.1);
+      color:#8c3030;
+      font-size:.75rem;
+      line-height:1.5;
+    }
+
+    .login-err.show{display:block}
+
+    .dash{
+      display:none;
+      min-height:calc(100vh - 74px);
+    }
+
+    .dash.active{display:block}
+
+    .dash-body{
+      width:100%;
+      max-width:1050px;
+      margin:0 auto;
+      padding:2.25rem 1.25rem 4rem;
+    }
+
+    .dash-heading{margin-bottom:1.5rem}
+
+    .dash-heading span{
+      display:block;
+      color:var(--g5);
+      font-size:.7rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      margin-bottom:.4rem;
+    }
+
+    .dash-heading h1{
+      font-family:var(--fd);
+      font-size:2rem;
+      color:var(--text);
+    }
+
+    .dash-heading p{
+      margin-top:.35rem;
+      color:var(--text3);
+      font-size:.8rem;
+    }
+
+    .dash-stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1rem;
+      margin-bottom:1.5rem;
+    }
+
+    .dash-stat{
+      padding:1.35rem;
+      border-radius:1rem;
+      background:var(--glass);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border);
+    }
+
+    .dash-stat-n{
+      font-family:var(--fd);
+      font-size:2rem;
+      font-weight:700;
+      color:var(--g6);
+      line-height:1;
+    }
+
+    .dash-stat-l{
+      font-size:.65rem;
+      font-weight:700;
+      color:var(--text3);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-top:.4rem;
+    }
+
+    .tabs{
+      display:flex;
+      gap:.5rem;
+      margin-bottom:1.25rem;
+      padding:.35rem;
+      width:max-content;
+      max-width:100%;
+      border-radius:999px;
+      background:rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.2);
+    }
+
+    .tab{
+      border:0;
+      padding:.65rem 1rem;
+      border-radius:999px;
+      background:transparent;
+      color:var(--text2);
+      font-size:.75rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .tab.active{
+      background:var(--g6);
+      color:var(--cream);
+    }
+
+    .panel{display:none}
+    .panel.active{display:block}
+
+    .panel-title{
+      font-family:var(--fd);
+      font-size:1.25rem;
+      margin-bottom:1rem;
+    }
+
+    .msg-list{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+    }
+
+    .msg-empty{
+      text-align:center;
+      padding:3rem 1.5rem;
+      border-radius:1rem;
+      background:var(--glass);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border);
+      color:var(--text3);
+      font-size:.875rem;
+    }
+
+    .msg-card{
+      position:relative;
+      padding:1.25rem;
+      border-radius:1rem;
+      background:var(--glass);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border);
+      box-shadow:0 8px 30px rgba(42,58,34,.05);
+    }
+
+    .msg-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.45rem .65rem;
+      margin-bottom:.7rem;
+      padding-right:2.8rem;
+      align-items:baseline;
+    }
+
+    .msg-name{
+      font-family:var(--fd);
+      font-size:1rem;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .msg-email{
+      font-size:.72rem;
+      color:var(--g4);
+      overflow-wrap:anywhere;
+    }
+
+    .msg-time{
+      font-size:.65rem;
+      color:var(--text4);
+      margin-left:auto;
+    }
+
+    .msg-text{
+      font-size:.85rem;
+      line-height:1.65;
+      color:var(--text2);
+      white-space:pre-wrap;
+      padding:.8rem 1rem;
+      border-radius:.7rem;
+      background:rgba(255,255,255,.2);
+    }
+
+    .msg-star{
+      position:absolute;
+      top:1rem;
+      right:1rem;
+      width:38px;
+      height:38px;
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:50%;
+      background:rgba(255,255,255,.22);
+      color:var(--g5);
+      font-size:1.35rem;
+      line-height:1;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:transform .2s,background .2s,color .2s;
+    }
+
+    .msg-star:hover{
+      transform:scale(1.06);
+      background:rgba(255,255,255,.38);
+    }
+
+    .msg-star.starred{
+      color:var(--g6);
+      background:rgba(255,255,255,.48);
+    }
+
+    .msg-star svg{
+      width:20px;
+      height:20px;
+      display:block;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:1.8;
+      stroke-linejoin:round;
+    }
+
+    .msg-star.starred svg{
+      fill:currentColor;
+    }
+
+    .post-form{
+      padding:1.25rem;
+      margin-bottom:1.5rem;
+      border-radius:1rem;
+      background:var(--glass);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border);
+    }
+
+    .post-form label{
+      display:block;
+      margin-bottom:.4rem;
+      margin-top:.85rem;
+      font-size:.72rem;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .post-form label:first-child{margin-top:0}
+
+    .post-form textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+
+    .post-form-actions{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:1rem;
+    }
+
+    .btn-post{
+      padding:.7rem 1.15rem;
+      background:var(--g6);
+      color:var(--cream);
+      font-size:.75rem;
+    }
+
+    .btn-post:hover{background:var(--g5)}
+
+    .post-list{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+    }
+
+    .post-card{
+      overflow:hidden;
+      border-radius:1rem;
+      background:var(--glass);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid var(--glass-border);
+    }
+
+    .post-card img{
+      width:100%;
+      max-height:280px;
+      display:block;
+      object-fit:cover;
+    }
+
+    .post-body{padding:1.15rem}
+
+.post-content {
+  text-align: left;
+  width: 100%;
+  margin: 0;
+}
+
+    .post-time{
+      display:block;
+      margin-top:.7rem;
+      color:var(--text4);
+      font-size:.65rem;
+    }
+
+    .logout-area{
+      margin-top:2rem;
+      text-align:center;
+    }
+
+    .btn-logout{
+      padding:.7rem 1.2rem;
+      background:rgba(150,50,50,.12);
+      color:#873535;
+      font-size:.75rem;
+    }
+
+    .btn-logout:hover{background:rgba(150,50,50,.2)}
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:1.25rem;
+      z-index:2000;
+      transform:translate(-50%,20px);
+      opacity:0;
+      pointer-events:none;
+      padding:.75rem 1rem;
+      border-radius:999px;
+      background:var(--g6);
+      color:var(--cream);
+      font-size:.75rem;
+      font-weight:600;
+      transition:.25s;
+    }
+
+    .toast.show{
+      opacity:1;
+      transform:translate(-50%,0);
+    }
+
+    @media(max-width:900px){
+      .navbar{padding:.65rem 1rem}
+
+      .menu-btn{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        padding:.75rem 1rem 1rem;
+        background:rgba(214,226,196,.94);
+        backdrop-filter:blur(20px);
+        -webkit-backdrop-filter:blur(20px);
+        border-bottom:1px solid rgba(255,255,255,.25);
+      }
+
+      .nav-links.open{display:flex}
+
+      .nav-link{
+        width:100%;
+        padding:.8rem 1rem;
+        border-radius:.75rem;
+        text-align:left;
+      }
+    }
+
+    @media(max-width:600px){
+      .brand-name{font-size:1.15rem}
+      .brand img{width:42px;height:42px}
+
+      .login-wrap{
+        min-height:calc(100vh - 65px);
+        padding:2rem 1rem;
+      }
+
+      .login-card{
+        padding:2.25rem 1.25rem;
+        border-radius:1.25rem;
+      }
+
+      .login-card h1{font-size:2rem}
+
+      .dash-body{padding:1.5rem 1rem 3rem}
+      .dash-heading h1{font-size:1.7rem}
+
+      .dash-stats{gap:.7rem}
+      .dash-stat{padding:1rem}
+
+      .tabs{width:100%}
+      .tab{flex:1}
+
+      .msg-time{
+        width:100%;
+        margin-left:0;
+      }
+
+      .post-form-actions{justify-content:stretch}
+      .btn-post{width:100%}
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+  </div>
+
+  <header class="navbar">
+    <a class="brand" href="index.html" aria-label="Skiat Skut Home">
+      <img src="Picture/logo.png" alt="Logo Skiat Skut"/>
+      <span class="brand-name">Skiat Skut</span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Buka menu" aria-expanded="false">
+      <span class="menu-icon" aria-hidden="true"><span></span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#profile">Profile</a>
+      <a class="nav-link" href="index.html#works">Karya</a>
+      <a class="nav-link" href="index.html#pictures">Pictures</a>
+      <a class="nav-link" href="index.html#timeline">Timeline</a>
+      <a class="nav-link" href="index.html#contact">Contact</a>
+      <a class="nav-link" href="posts.html">Postingan</a>
+      <a class="nav-link nav-admin active" href="admin.html">Login Admin</a>
+    </nav>
+  </header>
+
+  <main class="login-wrap" id="loginWrap">
+    <section class="login-card">
+      <img class="logo" src="Picture/logo.png" alt="Logo Skiat Skut"/>
+
+      <span class="login-label">/ SKIAT SKUT /</span>
+      <h1>Admin Panel</h1>
+
+      <p class="subtitle">
+        Masuk untuk mengelola pesan dan postingan Skiat Skut.
+      </p>
+
+      <form id="loginForm">
+        <div class="fld">
+          <label for="email">Email Admin</label>
+          <input id="email" type="email" placeholder="admin@example.com" required autocomplete="email"/>
+        </div>
+
+        <div class="fld">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Password" required autocomplete="current-password"/>
+        </div>
+
+        <button type="submit" class="btn btn-login" id="loginBtn">Login</button>
+
+        <div class="login-err" id="loginErr">
+          Email atau password salah.
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <main class="dash" id="dash">
+    <div class="dash-body">
+
+      <div class="dash-heading">
+        <span>/ ADMIN DASHBOARD /</span>
+        <h1>Selamat datang, Admin.</h1>
+        <p>Kelola pesan masuk dan postingan Skiat Skut dari sini.</p>
+      </div>
+
+      <section class="dash-stats">
+        <div class="dash-stat">
+          <div class="dash-stat-n" id="msgCount">0</div>
+          <div class="dash-stat-l">Total Pesan</div>
+        </div>
+
+        <div class="dash-stat">
+          <div class="dash-stat-n" id="postCount">0</div>
+          <div class="dash-stat-l">Total Postingan</div>
+        </div>
+      </section>
+
+      <div class="tabs">
+        <button class="tab active" type="button" data-tab="messages">Pesan</button>
+        <button class="tab" type="button" data-tab="posts">Postingan</button>
+      </div>
+
+      <section class="panel active" id="messagesPanel">
+        <h2 class="panel-title">Pesan Masuk</h2>
+
+        <div class="msg-list" id="msgList">
+          <div class="msg-empty">Memuat pesan...</div>
+        </div>
+      </section>
+
+      <section class="panel" id="postsPanel">
+        <h2 class="panel-title">Kelola Postingan</h2>
+
+        <form class="post-form" id="postForm">
+          <label for="postContent">Isi Postingan</label>
+
+          <textarea
+            id="postContent"
+            placeholder="Tulis sesuatu untuk dibagikan..."
+            required></textarea>
+
+          <label for="postImage">
+            URL Gambar
+            <span style="font-weight:400;color:var(--text4)">(opsional)</span>
+          </label>
+
+          <input
+            id="postImage"
+            type="url"
+            placeholder="https://example.com/image.jpg"/>
+
+          <div class="post-form-actions">
+            <button type="submit" class="btn btn-post" id="postBtn">
+              Publikasikan
+            </button>
+          </div>
+        </form>
+
+        <div class="post-list" id="postList">
+          <div class="msg-empty">Memuat postingan...</div>
+        </div>
+      </section>
+
+      <div class="logout-area">
+        <button class="btn btn-logout" id="logoutBtn" type="button">
+          Logout Admin
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    (function(){
+
+      /* =================================
+         SUPABASE
+      ================================= */
+
+      const SUPABASE_URL =
+        'https://xewpzqewtzatnrrxtmpm.supabase.co';
+
+      const SUPABASE_PUBLISHABLE_KEY =
+        'sb_publishable_iL72bxNkOObuhG1i-XngSA_NRFrcvWq';
+
+      const { createClient } = window.supabase;
+
+      const supabase = createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+      /* =================================
+         ELEMENTS
+      ================================= */
+
+      const $ = selector =>
+        document.querySelector(selector);
+
+      const $$ = selector =>
+        document.querySelectorAll(selector);
+
+
+      /* =================================
+         NAVBAR MOBILE
+      ================================= */
+
+      const menuBtn = $('#menuBtn');
+      const navLinks = $('#navLinks');
+
+      menuBtn.addEventListener('click', () => {
+
+        const open =
+          navLinks.classList.toggle('open');
+
+        menuBtn.setAttribute(
+          'aria-expanded',
+          String(open)
+        );
+
+        menuBtn.classList.toggle('open',open);
+        menuBtn.setAttribute(
+          'aria-label',
+          open ? 'Tutup menu' : 'Buka menu'
+        );
+
+      });
+
+      $$('.nav-link').forEach(link => {
+
+        link.addEventListener('click', () => {
+
+          navLinks.classList.remove('open');
+
+          menuBtn.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+          menuBtn.classList.remove('open');
+          menuBtn.setAttribute('aria-label','Buka menu');
+
+        });
+
+      });
+
+
+      /* =================================
+         LOGIN ELEMENTS
+      ================================= */
+
+      const loginWrap = $('#loginWrap');
+      const dash = $('#dash');
+      const loginForm = $('#loginForm');
+      const loginBtn = $('#loginBtn');
+      const loginErr = $('#loginErr');
+
+
+      /* =================================
+         CHECK SESSION
+      ================================= */
+
+      checkSession();
+
+      async function checkSession(){
+
+        const { data, error } =
+          await supabase.auth.getSession();
+
+        if(!error && data && data.session){
+          showDashboard();
+        }
+
+      }
+
+
+      /* =================================
+         LOGIN
+      ================================= */
+
+      loginForm.addEventListener(
+        'submit',
+        async event => {
+
+          event.preventDefault();
+
+          loginErr.classList.remove('show');
+
+          const email =
+            $('#email').value.trim();
+
+          const password =
+            $('#password').value;
+
+          loginBtn.disabled = true;
+          loginBtn.textContent = 'Memproses...';
+
+          const { error } =
+            await supabase.auth.signInWithPassword({
+              email,
+              password
+            });
+
+          if(error){
+
+            loginErr.textContent =
+              'Email atau password salah.';
+
+            loginErr.classList.add('show');
+
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Login';
+
+            return;
+
+          }
+
+          loginForm.reset();
+
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Login';
+
+          showDashboard();
+
+        }
+      );
+
+
+      /* =================================
+         LOGOUT
+      ================================= */
+
+      $('#logoutBtn').addEventListener(
+        'click',
+        async () => {
+
+          await supabase.auth.signOut();
+
+          dash.classList.remove('active');
+          loginWrap.style.display = '';
+
+          showToast('Berhasil logout.');
+
+        }
+      );
+
+
+      /* =================================
+         SHOW DASHBOARD
+      ================================= */
+
+      async function showDashboard(){
+
+        loginWrap.style.display = 'none';
+        dash.classList.add('active');
+
+        /*
+          Begitu admin masuk dashboard dan panel
+          Pesan dibuka, pesan yang belum pernah
+          dibaca mulai countdown 24 jam.
+        */
+        await markMessagesOpened();
+
+        await loadMessages();
+        await loadPosts();
+
+      }
+
+
+      /* =================================
+         TABS
+      ================================= */
+
+      $$('.tab').forEach(tab => {
+
+        tab.addEventListener(
+          'click',
+          async () => {
+
+            $$('.tab').forEach(t =>
+              t.classList.remove('active')
+            );
+
+            tab.classList.add('active');
+
+            const target =
+              tab.dataset.tab;
+
+            $('#messagesPanel')
+              .classList.toggle(
+                'active',
+                target === 'messages'
+              );
+
+            $('#postsPanel')
+              .classList.toggle(
+                'active',
+                target === 'posts'
+              );
+
+            /*
+              Kalau admin kembali ke tab Pesan,
+              pesan baru yang masih NULL mulai
+              dihitung dari saat ini.
+            */
+            if(target === 'messages'){
+
+              await markMessagesOpened();
+              await loadMessages();
+
+            }
+
+          }
+        );
+
+      });
+
+
+      /* =================================
+         MARK MESSAGES AS OPENED
+      ================================= */
+
+      async function markMessagesOpened(){
+
+        const { error } =
+          await supabase
+            .from('messages')
+            .update({
+              admin_opened_at:
+                new Date().toISOString()
+            })
+            .is('admin_opened_at', null);
+
+        if(error){
+          console.error(
+            'Gagal menandai pesan sebagai dibuka:',
+            error
+          );
+        }
+
+      }
+
+
+      /* =================================
+         LOAD MESSAGES
+      ================================= */
+
+      async function loadMessages(){
+
+        const list = $('#msgList');
+
+        list.innerHTML =
+          '<div class="msg-empty">Memuat pesan...</div>';
+
+        const { data, error } =
+          await supabase
+            .from('messages')
+            .select(
+              'id,name,email,message,created_at,admin_opened_at,starred,unstarred_at'
+            )
+            .order(
+              'created_at',
+              { ascending:false }
+            );
+
+        if(error){
+
+          console.error(error);
+
+          list.innerHTML =
+            '<div class="msg-empty">Gagal memuat pesan.</div>';
+
+          return;
+
+        }
+
+        const messages = data || [];
+
+        $('#msgCount').textContent =
+          messages.length;
+
+        if(messages.length === 0){
+
+          list.innerHTML =
+            '<div class="msg-empty">Belum ada pesan masuk.</div>';
+
+          return;
+
+        }
+
+        list.innerHTML =
+          messages.map(message => {
+
+            const date =
+              message.created_at
+                ? new Date(message.created_at)
+                : null;
+
+            const time =
+              date
+                ? date.toLocaleDateString(
+                    'id-ID',
+                    {
+                      day:'numeric',
+                      month:'short',
+                      year:'numeric',
+                      hour:'2-digit',
+                      minute:'2-digit'
+                    }
+                  )
+                : '';
+
+            const starred =
+              message.starred === true;
+
+            return `
+
+              <article class="msg-card">
+
+                <button
+                  class="msg-star ${starred ? 'starred' : ''}"
+                  type="button"
+                  data-message-id="${escAttr(message.id)}"
+                  data-starred="${starred ? 'true' : 'false'}"
+                  title="${starred ? 'Lepas bintang' : 'Bintangkan pesan'}"
+                  aria-label="${starred ? 'Lepas bintang' : 'Bintangkan pesan'}">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3.5l2.65 5.37 5.92.86-4.28 4.17 1.01 5.89L12 17.01l-5.3 2.78 1.01-5.89-4.28-4.17 5.92-.86L12 3.5z"/>
+                  </svg>
+                </button>
+
+                <div class="msg-meta">
+
+                  <span class="msg-name">
+                    ${esc(message.name)}
+                  </span>
+
+                  <span class="msg-email">
+                    ${esc(message.email)}
+                  </span>
+
+                  <span class="msg-time">
+                    ${time}
+                  </span>
+
+                </div>
+
+                <div class="msg-text">
+                  ${esc(message.message)}
+                </div>
+
+              </article>
+
+            `;
+
+          }).join('');
+
+
+        /*
+          Event tombol bintang dipasang setelah
+          kartu pesan selesai dirender.
+        */
+        $$('.msg-star').forEach(button => {
+
+          button.addEventListener(
+            'click',
+            async () => {
+
+              const id =
+                button.dataset.messageId;
+
+              const isStarred =
+                button.dataset.starred === 'true';
+
+              await toggleStarMessage(
+                id,
+                isStarred
+              );
+
+            }
+          );
+
+        });
+
+      }
+
+
+      /* =================================
+         STAR MESSAGE
+      ================================= */
+
+      async function toggleStarMessage(
+        id,
+        currentlyStarred
+      ){
+
+        const button =
+          document.querySelector(
+            `.msg-star[data-message-id="${CSS.escape(id)}"]`
+          );
+
+        if(button){
+          button.disabled = true;
+        }
+
+        const updateData =
+          currentlyStarred
+            ? {
+                starred:false,
+                unstarred_at:
+                  new Date().toISOString()
+              }
+            : {
+                starred:true,
+                unstarred_at:null
+              };
+
+        const { error } =
+          await supabase
+            .from('messages')
+            .update(updateData)
+            .eq('id', id);
+
+        if(error){
+
+          console.error(
+            'Gagal mengubah bintang:',
+            error
+          );
+
+          showToast(
+            'Gagal mengubah bintang pesan.'
+          );
+
+          if(button){
+            button.disabled = false;
+          }
+
+          return;
+
+        }
+
+        showToast(
+          currentlyStarred
+            ? 'Bintang dilepas. Timer 24 jam dimulai ulang.'
+            : 'Pesan dibintangkan. Pesan aman dari auto-delete.'
+        );
+
+        await loadMessages();
+
+      }
+
+
+      /* =================================
+         LOAD POSTS
+      ================================= */
+
+      async function loadPosts(){
+
+        const list = $('#postList');
+
+        list.innerHTML =
+          '<div class="msg-empty">Memuat postingan...</div>';
+
+        const { data, error } =
+          await supabase
+            .from('posts')
+            .select(
+              'id,content,image_url,created_at'
+            )
+            .order(
+              'created_at',
+              { ascending:false }
+            );
+
+        if(error){
+
+          console.error(error);
+
+          list.innerHTML =
+            '<div class="msg-empty">Gagal memuat postingan.</div>';
+
+          return;
+
+        }
+
+        const posts = data || [];
+
+        $('#postCount').textContent =
+          posts.length;
+
+        if(posts.length === 0){
+
+          list.innerHTML =
+            '<div class="msg-empty">Belum ada postingan.</div>';
+
+          return;
+
+        }
+
+        list.innerHTML =
+          posts.map(post => {
+
+            const date =
+              post.created_at
+                ? new Date(post.created_at)
+                : null;
+
+            const time =
+              date
+                ? date.toLocaleDateString(
+                    'id-ID',
+                    {
+                      day:'numeric',
+                      month:'short',
+                      year:'numeric',
+                      hour:'2-digit',
+                      minute:'2-digit'
+                    }
+                  )
+                : '';
+
+            const image =
+              post.image_url
+                ? `
+                  <img
+                    src="${escAttr(post.image_url)}"
+                    alt="Gambar postingan"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                  />
+                `
+                : '';
+
+            return `
+
+              <article class="post-card">
+
+                ${image}
+
+                <div class="post-body">
+
+                  <div class="post-content">
+                    ${esc(post.content)}
+                  </div>
+
+                  <span class="post-time">
+                    ${time}
+                  </span>
+
+                </div>
+
+              </article>
+
+            `;
+
+          }).join('');
+
+      }
+
+
+      /* =================================
+         CREATE POST
+      ================================= */
+
+      $('#postForm').addEventListener(
+        'submit',
+        async event => {
+
+          event.preventDefault();
+
+          const content =
+            $('#postContent').value.trim();
+
+          const imageUrl =
+            $('#postImage').value.trim();
+
+          if(!content){
+
+            showToast(
+              'Isi postingan belum diisi.'
+            );
+
+            return;
+
+          }
+
+          const button =
+            $('#postBtn');
+
+          button.disabled = true;
+          button.textContent =
+            'Mempublikasikan...';
+
+          const { error } =
+            await supabase
+              .from('posts')
+              .insert({
+                content:content,
+                image_url:imageUrl || null
+              });
+
+          if(error){
+
+            console.error(error);
+
+            showToast(
+              'Gagal membuat postingan.'
+            );
+
+            button.disabled = false;
+            button.textContent =
+              'Publikasikan';
+
+            return;
+
+          }
+
+          $('#postForm').reset();
+
+          button.disabled = false;
+          button.textContent =
+            'Publikasikan';
+
+          showToast(
+            'Postingan berhasil dibuat.'
+          );
+
+          await loadPosts();
+
+        }
+      );
+
+
+      /* =================================
+         HTML ESCAPE
+      ================================= */
+
+      function esc(value){
+
+        const div =
+          document.createElement('div');
+
+        div.textContent =
+          value || '';
+
+        return div.innerHTML;
+
+      }
+
+      function escAttr(value){
+
+        return String(value || '')
+          .replace(/&/g,'&amp;')
+          .replace(/"/g,'&quot;')
+          .replace(/</g,'&lt;')
+          .replace(/>/g,'&gt;');
+
+      }
+
+
+      /* =================================
+         TOAST
+      ================================= */
+
+      let toastTimer;
+
+      function showToast(message){
+
+        const toast = $('#toast');
+
+        toast.textContent =
+          message;
+
+        toast.classList.add('show');
+
+        clearTimeout(toastTimer);
+
+        toastTimer =
+          setTimeout(
+            () => {
+              toast.classList.remove('show');
+            },
+            3000
+          );
+
+      }
+
+
+      /* =================================
+         AUTH STATE
+      ================================= */
+
+      supabase.auth.onAuthStateChange(
+        (event, session) => {
+
+          if(
+            event === 'SIGNED_IN' &&
+            session
+          ){
+            showDashboard();
+          }
+
+          if(
+            event === 'SIGNED_OUT'
+          ){
+            dash.classList.remove('active');
+            loginWrap.style.display = '';
+          }
+
+        }
+      );
+
+    })();
+  </script>
+
+</body>
+</html>

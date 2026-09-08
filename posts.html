@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+  <title>Postingan — Skiat Skut</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+
+    /* =========================================
+       ROOT
+    ========================================= */
+
+    :root{
+      --g4:#6b8c5a;
+      --g5:#4a6b3a;
+      --g6:#2a3a22;
+
+      --cream:#f0eed8;
+      --cream2:#e8e5d0;
+
+      --text:#1c2418;
+      --text2:#3a4a30;
+      --text3:#5a6a50;
+      --text4:#8a9a7e;
+
+      --glass:rgba(255,255,255,.22);
+      --glass-border:rgba(255,255,255,.25);
+
+      --fd:'Playfair Display',Georgia,serif;
+      --fb:'DM Sans',system-ui,sans-serif;
+
+      --ease:cubic-bezier(.4,0,.2,1);
+    }
+
+
+    /* =========================================
+       RESET
+    ========================================= */
+
+    *,
+    *::before,
+    *::after{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      min-height:100vh;
+
+      font-family:var(--fb);
+
+      color:var(--text);
+
+      background:
+        linear-gradient(
+          165deg,
+          #d6e2c4 0%,
+          #c0d4a2 20%,
+          #a8c488 45%,
+          #90b470 70%,
+          #7da45c 100%
+        );
+
+      background-attachment:fixed;
+
+      -webkit-font-smoothing:antialiased;
+
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button{
+      font:inherit;
+    }
+
+
+    /* =========================================
+       BACKGROUND BLOBS
+    ========================================= */
+
+    .bg{
+      position:fixed;
+      inset:0;
+
+      overflow:hidden;
+
+      pointer-events:none;
+
+      z-index:-1;
+    }
+
+    .blob{
+      position:absolute;
+
+      background:var(--g4);
+
+      border-radius:
+        40% 60% 55% 45% /
+        55% 40% 60% 45%;
+
+      opacity:.28;
+
+      will-change:transform;
+
+      animation:
+        blobFloat 24s ease-in-out infinite alternate;
+    }
+
+    .b1{
+      width:380px;
+      height:380px;
+
+      top:-120px;
+      right:-100px;
+    }
+
+    .b2{
+      width:280px;
+      height:280px;
+
+      top:260px;
+      left:-130px;
+
+      animation-delay:-5s;
+    }
+
+    .b3{
+      width:330px;
+      height:330px;
+
+      bottom:100px;
+      right:-120px;
+
+      animation-delay:-10s;
+    }
+
+    .b4{
+      width:220px;
+      height:220px;
+
+      bottom:-80px;
+      left:-80px;
+
+      animation-delay:-15s;
+    }
+
+    @keyframes blobFloat{
+
+      0%{
+        transform:
+          translate3d(0,0,0)
+          scale(1);
+      }
+
+      50%{
+        transform:
+          translate3d(10px,-8px,0)
+          scale(1.02);
+      }
+
+      100%{
+        transform:
+          translate3d(-8px,8px,0)
+          scale(.99);
+      }
+
+    }
+
+
+    /* =========================================
+       NAVBAR
+    ========================================= */
+
+    .navbar{
+      position:sticky;
+
+      top:0;
+
+      z-index:1000;
+
+      min-height:74px;
+
+      padding:.75rem 1.5rem;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:1rem;
+
+      background:
+        rgba(214,226,196,.78);
+
+      backdrop-filter:blur(18px);
+
+      -webkit-backdrop-filter:blur(18px);
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.25);
+    }
+
+
+    /* BRAND */
+
+    .brand{
+      display:flex;
+
+      align-items:center;
+
+      gap:.75rem;
+
+      flex-shrink:0;
+    }
+
+    .brand img{
+      width:48px;
+      height:48px;
+
+      border-radius:50%;
+
+      object-fit:cover;
+
+      background:#fff;
+    }
+
+    .brand-name{
+      font-family:var(--fd);
+
+      font-size:1.35rem;
+
+      font-weight:700;
+
+      color:var(--g6);
+    }
+
+
+    /* NAV LINKS */
+
+    .nav-links{
+      display:flex;
+
+      align-items:center;
+
+      gap:.25rem;
+    }
+
+    .nav-link{
+      padding:.55rem .7rem;
+
+      border-radius:999px;
+
+      color:var(--text2);
+
+      font-size:.75rem;
+
+      font-weight:600;
+
+      white-space:nowrap;
+
+      transition:
+        background .2s,
+        color .2s,
+        transform .2s;
+    }
+
+    .nav-link:hover{
+      background:
+        rgba(255,255,255,.3);
+
+      color:var(--g6);
+
+      transform:
+        translateY(-1px);
+    }
+
+    .nav-link.active{
+      background:var(--g6);
+
+      color:var(--cream);
+    }
+
+    .nav-admin{
+      background:var(--g6);
+
+      color:var(--cream);
+    }
+
+    .nav-admin:hover{
+      background:var(--g5);
+
+      color:var(--cream);
+    }
+
+
+    /* MOBILE MENU BUTTON */
+
+    .menu-btn{
+      display:none;
+
+      width:42px;
+      height:42px;
+
+      border:0;
+
+      border-radius:50%;
+
+      background:
+        rgba(255,255,255,.35);
+
+      color:var(--g6);
+
+      cursor:pointer;
+
+      font-size:1.3rem;
+
+      align-items:center;
+      justify-content:center;
+    }
+
+
+    /* =========================================
+       MOBILE NAV
+    ========================================= */
+
+    @media(max-width:900px){
+
+      .navbar{
+        padding:.65rem 1rem;
+      }
+
+      .menu-btn{
+        display:flex;
+      }
+
+      .nav-links{
+        position:absolute;
+
+        top:100%;
+        left:0;
+        right:0;
+
+        display:none;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        padding:.75rem 1rem 1rem;
+
+        background:
+          rgba(214,226,196,.94);
+
+        backdrop-filter:blur(20px);
+
+        -webkit-backdrop-filter:blur(20px);
+
+        border-bottom:
+          1px solid
+          rgba(255,255,255,.25);
+      }
+
+      .nav-links.open{
+        display:flex;
+      }
+
+      .nav-link{
+        width:100%;
+
+        padding:.8rem 1rem;
+
+        border-radius:.75rem;
+
+        text-align:left;
+      }
+
+    }
+
+
+    /* =========================================
+       HERO
+    ========================================= */
+
+    .hero{
+      position:relative;
+
+      padding:
+        6rem 1.25rem
+        4rem;
+
+      text-align:center;
+    }
+
+    .hero-label{
+      display:block;
+
+      margin-bottom:.75rem;
+
+      color:var(--g5);
+
+      font-size:.72rem;
+
+      font-weight:700;
+
+      letter-spacing:.14em;
+    }
+
+    .hero h1{
+      font-family:var(--fd);
+
+      font-size:
+        clamp(2.5rem,8vw,4.5rem);
+
+      line-height:1.05;
+
+      color:var(--text);
+
+      margin-bottom:1rem;
+    }
+
+    .hero p{
+      max-width:680px;
+
+      margin:0 auto;
+
+      color:var(--text3);
+
+      font-size:
+        clamp(.9rem,2.5vw,1.1rem);
+
+      line-height:1.7;
+    }
+
+
+    /* =========================================
+       POSTS AREA
+    ========================================= */
+
+    .posts-section{
+      width:100%;
+
+      max-width:850px;
+
+      margin:0 auto;
+
+      padding:
+        0 1.25rem
+        5rem;
+    }
+
+
+    /* =========================================
+       POSTS LIST
+    ========================================= */
+
+    .posts-list{
+      display:flex;
+
+      flex-direction:column;
+
+      gap:1.5rem;
+    }
+
+
+    /* =========================================
+       POST CARD
+    ========================================= */
+
+    .post-card{
+      overflow:hidden;
+
+      border-radius:1.25rem;
+
+      background:
+        var(--glass);
+
+      backdrop-filter:blur(14px);
+
+      -webkit-backdrop-filter:blur(14px);
+
+      border:
+        1px solid
+        var(--glass-border);
+
+      box-shadow:
+        0 12px 45px
+        rgba(42,58,34,.08);
+
+      transition:
+        transform .3s var(--ease),
+        box-shadow .3s var(--ease);
+    }
+
+    .post-card:hover{
+      transform:
+        translateY(-4px);
+
+      box-shadow:
+        0 18px 55px
+        rgba(42,58,34,.12);
+    }
+
+
+    /* =========================================
+       POST IMAGE
+    ========================================= */
+
+    .post-image-wrap{
+      width:100%;
+
+      background:
+        rgba(255,255,255,.12);
+    }
+
+    .post-image{
+      display:block;
+
+      width:100%;
+
+      max-height:520px;
+
+      object-fit:cover;
+    }
+
+
+    /* =========================================
+       POST BODY
+    ========================================= */
+
+    .post-body{
+      padding:1.4rem 1.35rem 1.5rem;
+    }
+
+.post-content {
+  text-align: left;
+  width: 100%;
+  margin: 0;
+}
+
+    .post-date{
+      display:block;
+
+      margin-top:1rem;
+
+      color:var(--text4);
+
+      font-size:.68rem;
+
+      font-weight:500;
+    }
+
+
+    /* =========================================
+       EMPTY / ERROR / LOADING
+    ========================================= */
+
+    .state-card{
+      padding:
+        4rem 1.5rem;
+
+      text-align:center;
+
+      border-radius:1.25rem;
+
+      background:
+        var(--glass);
+
+      backdrop-filter:blur(14px);
+
+      -webkit-backdrop-filter:blur(14px);
+
+      border:
+        1px solid
+        var(--glass-border);
+    }
+
+    .state-icon{
+      margin-bottom:1rem;
+
+      font-size:2.5rem;
+
+      line-height:1;
+    }
+
+    .state-card h2{
+      font-family:var(--fd);
+
+      font-size:1.7rem;
+
+      color:var(--text);
+
+      margin-bottom:.5rem;
+    }
+
+    .state-card p{
+      color:var(--text3);
+
+      font-size:.85rem;
+
+      line-height:1.6;
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    .footer{
+      padding:
+        3rem 1.25rem;
+
+      text-align:center;
+
+      background:var(--g6);
+
+      color:var(--cream);
+    }
+
+    .footer h2{
+      font-family:var(--fd);
+
+      font-size:1.7rem;
+
+      margin-bottom:.5rem;
+    }
+
+    .footer p{
+      color:
+        rgba(240,238,216,.7);
+
+      font-size:.85rem;
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media(max-width:600px){
+
+      .brand img{
+        width:42px;
+        height:42px;
+      }
+
+      .brand-name{
+        font-size:1.15rem;
+      }
+
+      .hero{
+        padding:
+          4.5rem 1rem
+          3rem;
+      }
+
+      .hero h1{
+        font-size:2.8rem;
+      }
+
+      .posts-section{
+        padding:
+          0 1rem
+          3.5rem;
+      }
+
+      .post-body{
+        padding:
+          1.15rem 1rem 1.25rem;
+      }
+
+      .post-content{
+        font-size:.85rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================================
+       BACKGROUND
+  ========================================= -->
+
+  <div class="bg" aria-hidden="true">
+
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+
+  </div>
+
+
+  <!-- =========================================
+       NAVBAR
+  ========================================= -->
+
+  <header class="navbar">
+
+
+    <!-- BRAND -->
+
+    <a
+      href="index.html"
+      class="brand"
+      aria-label="Skiat Skut Home">
+
+      <img
+        src="Picture/logo.png"
+        alt="Logo Skiat Skut"
+      />
+
+      <span class="brand-name">
+        Skiat Skut
+      </span>
+
+    </a>
+
+
+    <!-- MOBILE BUTTON -->
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      type="button"
+      aria-label="Buka menu"
+      aria-expanded="false">
+
+      ☰
+
+    </button>
+
+
+    <!-- NAVIGATION -->
+
+    <nav
+      class="nav-links"
+      id="navLinks">
+
+
+      <a
+        class="nav-link"
+        href="index.html">
+
+        Home
+
+      </a>
+
+
+      <a
+        class="nav-link"
+        href="index.html#profile">
+
+        Profile
+
+      </a>
+
+
+      <a
+        class="nav-link"
+        href="index.html#works">
+
+        Karya
+
+      </a>
+
+
+      <a
+        class="nav-link"
+        href="index.html#pictures">
+
+        Pictures
+
+      </a>
+
+
+      <a
+        class="nav-link"
+        href="index.html#timeline">
+
+        Timeline
+
+      </a>
+
+
+      <a
+        class="nav-link"
+        href="index.html#contact">
+
+        Contact
+
+      </a>
+
+
+      <a
+        class="nav-link active"
+        href="posts.html">
+
+        Postingan
+
+      </a>
+
+
+      <a
+        class="nav-link nav-admin"
+        href="admin.html">
+
+        Login Admin
+
+      </a>
+
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================================
+       HERO
+  ========================================= -->
+
+  <main>
+
+    <section class="hero">
+
+      <span class="hero-label">
+        / SKIAT SKUT /
+      </span>
+
+      <h1>
+        Postingan
+      </h1>
+
+      <p>
+        Update, cerita, dan berbagai hal
+        dari perjalanan Skiat Skut.
+      </p>
+
+    </section>
+
+
+    <!-- =========================================
+         POSTS
+    ========================================= -->
+
+    <section class="posts-section">
+
+      <div
+        class="posts-list"
+        id="postsList">
+
+        <div class="state-card">
+
+          <div class="state-icon">
+            ✦
+          </div>
+
+          <h2>
+            Memuat postingan
+          </h2>
+
+          <p>
+            Tunggu sebentar...
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       FOOTER
+  ========================================= -->
+
+  <footer class="footer">
+
+    <h2>
+      Skiat Skut
+    </h2>
+
+    <p>
+      Different Stories, One Journey.
+    </p>
+
+  </footer>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================= -->
+
+  <script>
+
+    (function(){
+
+
+      /* =======================================
+         SUPABASE
+      ======================================= */
+
+      const SUPABASE_URL =
+        'https://xewpzqewtzatnrrxtmpm.supabase.co';
+
+      const SUPABASE_PUBLISHABLE_KEY =
+        'sb_publishable_iL72bxNkOObuhG1i-XngSA_NRFrcvWq';
+
+
+      const {
+        createClient
+      } = window.supabase;
+
+
+      const supabase =
+        createClient(
+          SUPABASE_URL,
+          SUPABASE_PUBLISHABLE_KEY
+        );
+
+
+      /* =======================================
+         ELEMENTS
+      ======================================= */
+
+      const menuBtn =
+        document.querySelector('#menuBtn');
+
+      const navLinks =
+        document.querySelector('#navLinks');
+
+      const postsList =
+        document.querySelector('#postsList');
+
+
+      /* =======================================
+         MOBILE MENU
+      ======================================= */
+
+      menuBtn.addEventListener(
+        'click',
+        function(){
+
+          const isOpen =
+            navLinks.classList.toggle('open');
+
+
+          menuBtn.setAttribute(
+            'aria-expanded',
+            String(isOpen)
+          );
+
+
+          menuBtn.textContent =
+            isOpen
+              ? '×'
+              : '☰';
+
+        }
+      );
+
+
+      /* Close menu after clicking link */
+
+      document
+        .querySelectorAll('.nav-link')
+        .forEach(function(link){
+
+          link.addEventListener(
+            'click',
+            function(){
+
+              navLinks.classList.remove('open');
+
+              menuBtn.setAttribute(
+                'aria-expanded',
+                'false'
+              );
+
+              menuBtn.textContent =
+                '☰';
+
+            }
+          );
+
+        });
+
+
+      /* =======================================
+         LOAD POSTS
+      ======================================= */
+
+      loadPosts();
+
+
+      async function loadPosts(){
+
+        const {
+          data,
+          error
+        } =
+          await supabase
+            .from('posts')
+            .select(
+              'id,content,image_url,created_at'
+            )
+            .order(
+              'created_at',
+              {
+                ascending:false
+              }
+            );
+
+
+        /* =====================================
+           ERROR
+        ===================================== */
+
+        if(error){
+
+          console.error(
+            'Supabase error:',
+            error
+          );
+
+
+          postsList.innerHTML = `
+
+            <div class="state-card">
+
+              <div class="state-icon">
+                ⚠
+              </div>
+
+              <h2>
+                Gagal memuat postingan
+              </h2>
+
+              <p>
+                Terjadi masalah saat mengambil
+                data postingan.
+              </p>
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        /* =====================================
+           EMPTY
+        ===================================== */
+
+        if(!data || data.length === 0){
+
+          postsList.innerHTML = `
+
+            <div class="state-card">
+
+              <div class="state-icon">
+                ✦
+              </div>
+
+              <h2>
+                Belum ada postingan
+              </h2>
+
+              <p>
+                Belum ada sesuatu yang
+                dibagikan oleh Skiat Skut.
+              </p>
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        /* =====================================
+           RENDER
+        ===================================== */
+
+        postsList.innerHTML =
+          data
+            .map(renderPost)
+            .join('');
+
+      }
+
+
+      /* =======================================
+         RENDER SINGLE POST
+      ======================================= */
+
+      function renderPost(post){
+
+        const image =
+          post.image_url
+            ? `
+
+              <div class="post-image-wrap">
+
+                <img
+                  class="post-image"
+                  src="${escAttr(post.image_url)}"
+                  alt="Gambar postingan Skiat Skut"
+                  loading="lazy"
+                  onerror="this.parentElement.style.display='none'"
+                />
+
+              </div>
+
+            `
+            : '';
+
+
+        const date =
+          post.created_at
+            ? new Date(
+                post.created_at
+              ).toLocaleDateString(
+                'id-ID',
+                {
+                  day:'numeric',
+                  month:'long',
+                  year:'numeric',
+                  hour:'2-digit',
+                  minute:'2-digit'
+                }
+              )
+            : '';
+
+
+        return `
+
+          <article class="post-card">
+
+            ${image}
+
+            <div class="post-body">
+
+              <div class="post-content">
+                ${esc(post.content)}
+              </div>
+
+              ${
+                date
+                  ? `
+                    <time
+                      class="post-date"
+                      datetime="${escAttr(post.created_at)}">
+
+                      ${date}
+
+                    </time>
+                  `
+                  : ''
+              }
+
+            </div>
+
+          </article>
+
+        `;
+
+      }
+
+
+      /* =======================================
+         ESCAPE HTML
+      ======================================= */
+
+      function esc(value){
+
+        const div =
+          document.createElement('div');
+
+        div.textContent =
+          value || '';
+
+        return div.innerHTML;
+
+      }
+      /* =======================================
+         ESCAPE ATTRIBUTE
+      ======================================= */
+      function escAttr(value){
+        return String(value || '')
+          .replace(/&/g,'&amp;')
+          .replace(/"/g,'&quot;')
+          .replace(/</g,'&lt;')
+          .replace(/>/g,'&gt;')
+          .replace(/'/g,'&#039;');
+      }
+    })();
+  </script>
+</body>
+</html>

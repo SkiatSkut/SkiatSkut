@@ -1,0 +1,262 @@
+[
+  {
+    "name": "Muhammad Satria Fadillah",
+    "role": "Leader",
+    "email": "rennkyoto17@gmail.com",
+    "phone": "6287887488235",
+    "photo": "Picture/profile/ano.png",
+    "bio": "Pemimpin kelompok Skiat Skut yang memiliki passion kuat di bidang Artificial Intelligence dan Machine Learning. Selalu berusaha mendorong tim untuk terus belajar dan berkembang.",
+    "educationTimeline": [
+      {
+        "level": "SD",
+        "school": "SDN Cengkareng Barat 20 PT",
+        "year": "2017 - 2023"
+      },
+      {
+        "level": "SMP",
+        "school": "SMPN 249 Jakarta",
+        "year": "2023 - 2026"
+      },
+      {
+        "level": "SMK",
+        "school": "SMKN 42 Jakarta",
+        "major": "Bisnis Retail",
+        "year": "2026 - 2029"
+      }
+    ],
+    "socials": [
+      {
+        "platform": "Instagram",
+        "username": "@renndcmbr",
+        "url": "https://instagram.com/renndcmbr"
+      }
+    ],
+    "skills": [
+      "Leadership",
+      "Critical Thinking",
+      "Ngelawak",
+      "Public Speaking"
+    ],
+    "hobbies": [
+      "Mendengarkan Musik",
+      "Bermain Game",
+      "Menonton Anime"
+    ]
+  },
+  {
+    "name": "M.Fakhri El Keeanu",
+    "role": "Secretary",
+    "email": "elkeeanu79@gmail.com",
+    "phone": "6285894303433",
+    "photo": "Picture/profile/pakri.png",
+    "bio": "Sekretaris Skiat Skut yang memiliki ketelitiannya dalam mengelola dokumentasi dan administrasi tim. Memiliki passion kuat di bidang Artificial Intelligence serta Machine Learning, dan selalu sigap mendukung ketua dalam mendorong tim untuk terus berkembang.",
+    "educationTimeline": [
+      {
+        "level": "SD",
+        "school": "Madrasah Ibtidaiyah",
+        "year": "2017 - 2023"
+      },
+      {
+        "level": "SMP",
+        "school": "SMPN 201 Jakarta",
+        "year": "2023 - 2026"
+      },
+      {
+        "level": "SMK",
+        "school": "SMKN 42 Jakarta",
+        "major": "Bisnis Retail",
+        "year": "2026 - 2029"
+      }
+    ],
+    "socials": [
+      {
+        "platform": "Instagram",
+        "username": "@zenn.lone",
+        "url": "https://instagram.com/zenn.lone"
+      }
+    ],
+    "skills": [
+      "Thinking",
+      "Management",
+      "Discipline",
+      "Public Speaking"
+    ],
+    "hobbies": [
+      "Mendengarkan Musik",
+      "Bermain Gitar"
+    ]
+  },
+  {
+    "name": "Stanlie Gunawan",
+    "role": "Web Developer & AI Specialist",
+    "email": "gunawanstanlie@gmail.com",
+    "phone": "628978115643",
+    "photo": "Picture/profile/gouw.png",
+    "bio": "Pengembang web Skiat Skut yang memanfaatkan teknologi AI sebagai alat utama dalam membangun dan mengembangkan website. Mampu mengubah ide menjadi produk digital secara efisien dengan pendekatan modern berbasis AI.",
+    "educationTimeline": [
+            {
+        "level": "SD",
+        "school": "SDN Cengkareng Barat 20 PT",
+        "year": "2017 - 2023"
+      },
+      {
+        "level": "SMP",
+        "school": "SMPN 249 Jakarta",
+        "year": "2023 - 2026"
+      },
+      {
+        "level": "SMK",
+        "school": "SMKN 42 Jakarta",
+        "major": "Bisnis Retail",
+        "year": "2026 - 2029"
+      }
+    ],
+    "socials": [
+      {
+        "platform": "TikTok",
+        "username": "@stanley.gouw1",
+        "url": "https://www.tiktok.com/@stanley.gouw1"
+      }
+    ],
+    "skills": [
+      "AI-Powered Development",
+      "Web Development",
+      "Prompt Engineering",
+      "Problem Solving"
+    ],
+    "hobbies": [
+      "Watching Anime",
+      "Playing Game",
+      "Video Editing",
+      "Prompt Crafting"
+    ]
+  },
+  {
+    "name": "Muamar Zainul Arifin",
+    "role": "Marketing Lead",
+    "email": "muamarzainularifin23@gnail.com",
+    "phone": "6282258631660",
+    "photo": "Picture/profile/bigmo.png",
+    "bio": "Laki-laki tangguh yang memiliki passion kuat di bidang Artificial Intelligence dan Seles. Selalu berusaha dan tidak mudah untuk menyerah serta terus belajar dan berkembang.",
+    "educationTimeline": [
+      {
+        "level": "SD",
+        "school": "SDN Semanan 14 Petang",
+        "year": "2017 - 2023"
+      },
+      {
+        "level": "SMP",
+        "school": "SMPN 205 Jakarta",
+        "year": "2023 - 2026"
+      },
+      {
+        "level": "SMK",
+        "school": "SMKN 42 Jakarta",
+        "major": "Bisnis Retail",
+        "year": "2026 - 2029"
+      }
+    ],
+    "socials": [
+      {
+        "platform": "Instagram",
+        "username": "@muamar938",
+        "url": "https://instagram.com/muamar938"
+      }
+    ],
+    "skills": [
+      "Leadership",
+      "Critical Thinking",
+      "Sales"
+    ],
+    "hobbies": [
+      "Berkebun",
+      "Mendengarkan musik"
+    ]
+  },
+  {
+    "name": "Zaskya Aulia As Sifa",
+    "role": "Data Analyst",
+    "email": "zaskyaaull@gmail.com",
+    "phone": "6281293171930",
+    "photo": "Picture/profile/zaki.png",
+    "bio": "Sebagai Data Analyst, memiliki ketertarikan kuat dalam mengolah dan menganalisis data untuk menemukan insight yang bermanfaat. Selalu berusaha mengembangkan kemampuan analisis, berpikir kritis, dan mendorong tim untuk mengambil keputusan berdasarkan data.",
+    "educationTimeline": [
+      {
+        "level": "SD",
+        "school": "SDN 015 Pagi",
+        "year": "2017 - 2023"
+      },
+      {
+        "level": "SMP",
+        "school": "SMPN 201 Jakarta",
+        "year": "2023 - 2026"
+      },
+      {
+        "level": "SMK",
+        "school": "SMKN 42 Jakarta",
+        "major": "Bisnis Retail",
+        "year": "2026 - 2029"
+      }
+    ],
+    "socials": [
+      {
+        "platform": "Instagram",
+        "username": "@cipaauljx",
+        "url": "https://instagram.com/cipaauljx"
+      }
+    ],
+    "skills": [
+      "Data Analysis",
+      "Critical Thinking",
+      "Problem Solving",
+      "Microsoft Excel"
+    ],
+    "hobbies": [
+      "Mendengarkan Musik",
+      "Membaca",
+      "Memasak"
+    ]
+  },
+  {
+    "name": "Naura Ferdhiana",
+    "role": "Community Manager",
+    "email": "cheejaee@gmail.com",
+    "phone": "6289654422488",
+    "photo": "Picture/profile/nau.png",
+    "bio": "Community Manager Kelompok Skiat Skut dengan passion di bidang Artificial Intelligence dan Machine Learning. Fokus menghubungkan anggota, menghidupkan diskusi, dan memastikan semua orang punya ruang untuk belajar dan bertumbuh.",
+    "educationTimeline": [
+      {
+        "level": "SD",
+        "school": "SDN Semanan 08 Pagi",
+        "year": "2017 - 2023"
+      },
+      {
+        "level": "SMP",
+        "school": "SMPN 205 Jakarta",
+        "year": "2023 - 2026"
+      },
+      {
+        "level": "SMK",
+        "school": "SMKN 42 Jakarta",
+        "major": "Bisnis Retail",
+        "year": "2026 - 2029"
+      }
+    ],
+    "socials": [
+      {
+        "platform": "Instagram",
+        "username": "@nraraa25",
+        "url": "https://instagram.com/nraraa25"
+      }
+    ],
+    "skills": [
+      "Content Creation",
+      "Public Speaking"
+    ],
+    "hobbies": [
+      "Mendengarkan Musik",
+      "Cooking",
+      "Baking"
+    ]
+  }
+]
