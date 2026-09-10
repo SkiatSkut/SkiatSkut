@@ -47,9 +47,27 @@
   "gallery": [
     {
       "type": "image",
-      "src": "Picture/pictures/pic1.jpg",
-      "alt": "Tim kolaborasi",
-      "category": "Kegiatan"
+      "src": "Picture/pictures/dokum1.jpg",
+      "alt": "Proses Project Website",
+      "category": "Dokumentasi"
+    }, 
+    {
+      "type": "image",
+      "src": "Picture/pictures/dokum2.jpg",
+      "alt": "Proses Project Website",
+      "category": "Dokumentasi"
+    }, 
+    {
+      "type": "image",
+      "src": "Picture/pictures/dokum3.jpg",
+      "alt": "Proses Project Website",
+      "category": "Dokumentasi"
+    }, 
+    {
+      "type": "image",
+      "src": "Picture/pictures/dokum4.jpg",
+      "alt": "Proses Project Website",
+      "category": "Dokumentasi"
     }
   ],
 

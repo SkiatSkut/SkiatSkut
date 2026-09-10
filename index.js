@@ -310,6 +310,49 @@ function openModal(mem){
     }
   }
 
+// =========================================================
+// CV
+// =========================================================
+const cv=$('#mCV');
+
+if(cv){
+  if(mem.cv){
+    cv.innerHTML=`
+      <div class="cv-actions">
+
+        <a
+          class="cv-btn cv-btn-view"
+          href="${mem.cv}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/>
+            <circle cx="12" cy="12" r="2.5"/>
+          </svg>
+          <span>Lihat CV</span>
+        </a>
+
+        <a
+          class="cv-btn cv-btn-download"
+          href="${mem.cv}"
+          download
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v11"/>
+            <path d="M7.5 10.5 12 15l4.5-4.5"/>
+            <path d="M4 20h16"/>
+          </svg>
+          <span>Unduh CV</span>
+        </a>
+
+      </div>
+    `;
+  }else{
+    cv.innerHTML='';
+  }
+}
+
 
   // =========================================================
   // EMAIL

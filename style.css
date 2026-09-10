@@ -925,3 +925,55 @@ a.ci:hover{color:var(--g6)}
     background-attachment:scroll;
   }
 }
+
+.cv-actions{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin-top:.7rem;
+}
+
+.cv-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  min-height:40px;
+  padding:.6rem 1rem;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:.8rem;
+  font-weight:600;
+  transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+}
+
+.cv-btn svg{
+  width:16px;
+  height:16px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  flex-shrink:0;
+}
+
+.cv-btn:hover{
+  transform:translateY(-2px);
+}
+
+.cv-btn-view{
+  background:var(--text);
+  color:#fff;
+  box-shadow:0 5px 14px rgba(0,0,0,.08);
+}
+
+.cv-btn-download{
+  background:rgba(255,255,255,.42);
+  color:var(--text);
+  border:1px solid rgba(0,0,0,.08);
+}
+
+.cv-btn-download:hover{
+  background:rgba(255,255,255,.65);
+}
